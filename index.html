@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OOP in JavaScript</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-5" >
+      <h1>Inserisci i tuoi dati</h1>
+      <form id="petForm" class="mb-5">
+        <div class="mb-3">
+          <label for="pet-name" class="form-label"
+            >Nome dell'animale domestico</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="pet-name"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="owner-name" class="form-label"
+            >Nome del proprietario</label
+          >
+          <input type="text" class="form-control" id="owner-name" />
+        </div>
+
+        <div class="mb-3">
+          <label for="species" class="form-label">Specie</label>
+          <input type="text" class="form-control" id="species" />
+        </div>
+        <div class="mb-3">
+          <label for="breed" class="form-label">Razza</label>
+          <input type="text" class="form-control" id="breed" />
+        </div>
+
+        <button
+          id="submit"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Invia
+        </button>
+      </form>
+
+      <div id="alert" class="alert alert-success d-none" role="alert"></div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      class Utente {
+        constructor(firstName, lastName, age, location) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.age = age;
+          this.location = location;
+        }
+
+        static isGreater(utenteA, utenteB) {
+          if (utenteA.age === utenteB.age) {
+            return "Le due persone hanno la stessa età";
+          } else if (utenteA.age > utenteB.age) {
+            return "La prima persona è più grande della seconda";
+          } else {
+            return "La seconda persona è più grande della prima";
+          }
+        }
+      }
+
+      const utenti = [
+        new Utente("John", "Wick", 55, "Russia"),
+        new Utente("Walker", "Cordell", 50, "USA"),
+      ];
+
+      console.log(Utente.isGreater(utenti[0], utenti[1]));
+
+      class Pet {
+        constructor(petName, ownerName, species, breed) {
+          this.petName = petName;
+          this.ownerName = ownerName;
+          this.species = species;
+          this.breed = breed;
+        }
+
+        static sameOwner(petA, petB) {
+          if (petA.ownerName === petB.ownerName) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+
+      document
+        .getElementById("submit")
+        .addEventListener("click", function (event) {
+          let petName = document.getElementById("pet-name").value;
+          let ownerName = document.getElementById("owner-name").value;
+          let species = document.getElementById("species").value;
+          let breed = document.getElementById("breed").value;
+
+          let alert = document.getElementById("alert");
+
+          alert.innerText = `Ciao sono ${petName}, il mio proprietario è ${ownerName}, sono un ${species} e nello specifico sono un ${breed}`;
+
+          alert.classList.remove("d-none");
+          alert.classList.add("d-block");
+          event.preventDefault();
+        });
+   
+    </script>
+  </body>
+</html>
